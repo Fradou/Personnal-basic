@@ -2,8 +2,13 @@
 
 {% block body %}
 <div>
-    {%  for i in 0..colnb %}
-        {{ i }}
+    <table>
+        <tr>
+    {%  for i in 0..(colnb-1) %}
+        <th>{{ collab[i] }}</th>
+
     {% endfor %}
+        </tr>
+    </table>
 </div>
 {% endblock %}
