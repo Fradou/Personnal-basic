@@ -1,14 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div>
-    <table>
-        <tr>
-    {%  for i in 0..(colnb-1) %}
-        <th>{{ collab[i] }}</th>
-
-    {% endfor %}
-        </tr>
-    </table>
-</div>
+    <div>
+        <table>
+            <tr>
+                {%  for i in 0..(colnb-1) %}
+                    <th>{{ collab[i] }}</th>
+                {% endfor %}
+            </tr>
+            {% for entry in entries %}
+            <tr>
+                {%  for i in 0..(colnb-1) %}
+                    {% set hash = collab[i] %}
+                    {{ entry[collab[i]] }}
+                {% endfor %}
+            <tr>
+                {% endfor %}
+        </table>
+    </div>
 {% endblock %}
