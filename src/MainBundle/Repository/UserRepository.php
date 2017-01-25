@@ -12,4 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+    public function recup(){
+        $qb = $this->createQueryBuilder('u')
+            ->select('u.id','u.username', 'u.password','u.email', 'u.isActive')
+            ->getQuery();
+
+        return $qb->getResult();
+    }
 }

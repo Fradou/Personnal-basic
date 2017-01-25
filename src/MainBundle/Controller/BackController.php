@@ -10,12 +10,22 @@ class BackController extends Controller
     public function indexAction()
     {
         /* Get all datas */
-        $entity = $this->getDoctrine()->getRepository('MainBundle:User')->findAll();
 
         /* Get entity labels */
         $em = $this->getDoctrine()->getManager();
-        $labels = $em->getClassMetadata('MainBundle:User')->getColumnNames();
+        $labels = $em->getClassMetadata('MainBundle:User')->getFieldNames();
         $colnb = count($labels);
+        $all = "";
+        for ($i=0; $i<$colnb; $i++){
+            if($i!=($colnb-1)){
+            $all = $all."'u.".$labels[$i]."',";
+                }
+                else {
+                    $all = $all."'u.".$labels[$i]."'";
+                }
+        }
+
+        $entity = $this->getDoctrine()->getRepository('MainBundle:User')->recup($all);
 
         return $this->render('back/template.html.twig', array(
             'colnb' => $colnb,
